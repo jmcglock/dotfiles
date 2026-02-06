@@ -1,0 +1,186 @@
+# ~/.config/starship.toml
+add_newline = true
+command_timeout = 2000
+
+# Enhanced format with better icons and purple theme
+format = """\
+[╭╴](bold #A78BFA)$env_var$os\
+$username\
+$directory\
+$git_branch\
+$git_status\
+$kubernetes\
+$terraform\
+$docker_context\
+$helm\
+$aws\
+$package\
+$cmd_duration\
+$time\
+$line_break\
+[╰─](bold #A78BFA)$character"""
+
+# Character indicators with better purple theme
+[character]
+success_symbol = "[>](bold #A78BFA)"
+error_symbol = "[>](bold red)"
+vimcmd_symbol = "[❮](bold #A78BFA)"
+
+# Distribution/OS indicator
+[env_var.STARSHIP_DISTRO]
+format = '[$env_value](bold white)'
+variable = "STARSHIP_DISTRO"
+disabled = false
+
+# OS Icons - Enhanced with better Nerd Font icons
+[os]
+format = '[$symbol](bold #A78BFA) '
+disabled = false
+[os.symbols]
+Windows = '󰍲'
+Arch = '󰣇'
+Ubuntu = '󰕈'
+Macos = '󰀵'
+Linux = '󰌽'
+Debian = '󰣚'
+CentOS = '󱄅'
+Fedora = '󰣛'
+
+# Username (enable when working with multiple environments)
+[username]
+style_user = "#A78BFA bold"
+style_root = "red bold"
+format = "[$user]($style) "
+disabled = true
+show_always = false
+
+# Directory with better icons and purple theme
+[directory]
+truncation_length = 4
+truncation_symbol = "…/"
+home_symbol = "󰋜 ~"
+read_only_style = "red"
+read_only = " 󰌾 "
+format = "at [$path]($style)[$read_only]($read_only_style) "
+style = "bold #A78BFA"
+truncate_to_repo = false
+
+# Git configuration with enhanced icons
+[git_branch]
+symbol = "󰊢 "
+format = "on [$symbol$branch]($style) "
+truncation_length = 8
+truncation_symbol = "…"
+style = "bold #A78BFA"
+
+[git_status]
+format = '[\($all_status$ahead_behind\)]($style) '
+style = "bold #A78BFA"
+conflicted = "󰞇"
+up_to_date = "󰸞"
+untracked = "󰋗"
+ahead = "⇡${count}"
+diverged = "󰹺⇡${ahead_count}⇣${behind_count}"
+behind = "⇣${count}"
+stashed = "󰆓"
+modified = "󰷈"
+staged = '[󰐕${count}](#A78BFA)'
+renamed = "󰑕"
+deleted = "󰆴"
+
+# Enhanced Kubernetes with comprehensive cluster name simplification
+[kubernetes]
+format = 'via [󱃾 $context\($namespace\)]($style) '
+style = "bold #A78BFA"
+disabled = false
+detect_files = ['k8s', 'kustomization.yaml', 'kustomization.yml', 'Chart.yaml']
+detect_folders = ['k8s', '.kube', 'charts', 'helm']
+
+[terraform]
+format = "via [󱁢 $version$workspace]($style) "
+style = "bold #A78BFA"
+disabled = false
+detect_files = ['*.tf', '*.tfvars', '*.tfstate']
+
+[docker_context]
+format = "via [󰡨 $context]($style) "
+style = "bold #A78BFA"
+disabled = false
+only_with_files = true
+
+[helm]
+format = "via [󱃾 $version]($style) "
+style = "bold #A78BFA"
+disabled = false
+
+# Cloud provider contexts with better icons
+[aws]
+format = "on [$symbol($profile )(\\($region\\) )(\\[$duration\\] )]($style)"
+symbol = "󰸏 "
+style = "bold #A78BFA"
+disabled = false
+force_display = false
+
+[gcloud]
+format = "on [󱇶 $project($region)]($style) "
+style = "bold #A78BFA"
+disabled = false
+
+[azure]
+format = "on [󰠅 $subscription]($style) "
+style = "bold #A78BFA"
+disabled = false
+
+# Package/dependency management with better icon
+[package]
+format = "is [󰏖 $version]($style) "
+style = "bold #A78BFA"
+disabled = false
+
+# Command execution time
+[cmd_duration]
+min_time = 500
+format = "took [󰔛 $duration]($style) "
+style = "bold yellow"
+disabled = false
+
+# Language-specific modules with enhanced icons
+[nodejs]
+format = "via [󰎙 $version]($style) "
+style = "bold green"
+disabled = true
+
+[python]
+symbol = "󰌠 "
+python_binary = "python3"
+format = 'via [${symbol}${pyenv_prefix}(${version} )(${virtualenv} )]($style)'
+style = "bold yellow"
+disabled = true
+
+[container]
+format = "[$symbol \\[$name\\]]($style) "
+symbol = "󰡨"
+style = "bold #A78BFA"
+disabled = false
+
+# YAML/Config file indicators (useful for your workflow)
+[custom.yaml_files]
+command = "find . -maxdepth 2 -name '*.yml' -o -name '*.yaml' | wc -l"
+when = """ test -f "*.yml" || test -f "*.yaml" """
+format = "[󰈙 yaml]($style) "
+style = "bold #A78BFA"
+description = "YAML files in current directory"
+
+[custom.docker_compose]
+command = "echo '󰡨'"
+when = """ test -f "docker-compose.yml" || test -f "docker-compose.yaml" || test -f "compose.yml" """
+format = "[$output compose]($style) "
+style = "bold #A78BFA"
+description = "Docker Compose detected"
+
+# Time display
+[time]
+disabled = false
+format = "at [󰥔 $time]($style) "
+style = "bold #A78BFA"
+time_format = "%R"

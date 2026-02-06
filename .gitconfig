@@ -1,0 +1,20 @@
+[core]
+	pager = delta
+[interactive]
+	diffFilter = delta --color-only
+[delta]
+	navigate = true
+	side-by-side = true
+	line-numbers = true
+	syntax-theme = Dracula
+	minus-style = "syntax '#3D1A4E'"
+	minus-emph-style = "syntax '#5E1A6E'"
+	plus-style = "syntax '#1A3D2E'"
+	plus-emph-style = "syntax '#1A5E3D'"
+	hunk-header-style = "syntax bold #A78BFA"
+	hunk-header-decoration-style = "box ul #7C3AED"
+	line-numbers-minus-style = "#9B6DFF"
+	line-numbers-plus-style = "#C084FC"
+	line-numbers-zero-style = "#8B5CF6"
+[merge]
+	conflictstyle = zdiff3
