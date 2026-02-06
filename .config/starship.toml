@@ -34,7 +34,7 @@ disabled = false
 
 # OS Icons - Enhanced with better Nerd Font icons
 [os]
-format = '[$symbol](bold #A78BFA) '
+format = '[$symbol](bold #D0D0D0) '
 disabled = false
 [os.symbols]
 Windows = '󰍲'
