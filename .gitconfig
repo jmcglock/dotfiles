@@ -18,3 +18,5 @@
 	line-numbers-zero-style = "#8B5CF6"
 [merge]
 	conflictstyle = zdiff3
+[include]
+	path = ~/.gitconfig.local
