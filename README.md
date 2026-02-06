@@ -50,18 +50,40 @@ Shows OS icon, directory, git branch/status, command duration, and time.
 ## Install
 
 ```bash
+# Install Homebrew (if not already installed)
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
 # Install tools
 brew install starship eza bat git-delta zoxide fzf lazygit k9s \
-  zsh-autosuggestions zsh-syntax-highlighting
+  zsh-autosuggestions zsh-syntax-highlighting stow
 
 # Install Nerd Font
 brew install --cask font-jetbrains-mono-nerd-font
 
-# Symlink dotfiles
-ln -sf ~/dotfiles/.zshrc ~/.zshrc
-ln -sf ~/dotfiles/.config/starship.toml ~/.config/starship.toml
-ln -sf ~/dotfiles/.gitconfig ~/.gitconfig
+# Clone the repo
+git clone git@github.com:jmcglock/dotfiles.git ~/Documents/github/personal/dotfiles
+cd ~/Documents/github/personal/dotfiles
+
+# Symlink dotfiles into ~ using Stow
+stow -t ~ .
+
+# Create local git identity (not tracked by the repo)
+cat <<EOF > ~/.gitconfig.local
+[user]
+	name = your-name
+	email = your-email@example.com
+EOF
 
 # Set font in your terminal app to "JetBrainsMono Nerd Font"
 # Restart your terminal
+```
+
+## Managing Dotfiles
+
+Files in `~` are symlinks to this repo. Any edits are automatically reflected.
+
+```bash
+# After making changes, commit and push
+cd ~/Documents/github/personal/dotfiles
+git add -A && git commit -m "Update config" && git push
 ```
