@@ -61,8 +61,8 @@ brew install starship eza bat git-delta zoxide fzf lazygit k9s \
 brew install --cask font-jetbrains-mono-nerd-font
 
 # Clone the repo
-git clone git@github.com:jmcglock/dotfiles.git ~/Documents/github/personal/dotfiles
-cd ~/Documents/github/personal/dotfiles
+git clone git@github.com:jmcglock/dotfiles.git ~/Documents/github/dotfiles
+cd ~/Documents/github/dotfiles
 
 # Symlink dotfiles into ~ using Stow
 stow -t ~ .
@@ -93,6 +93,6 @@ Files in `~` are symlinks to this repo. Any edits are automatically reflected.
 
 ```bash
 # After making changes, commit and push
-cd ~/Documents/github/personal/dotfiles
+cd ~/Documents/github/dotfiles
 git add -A && git commit -m "Update config" && git push
 ```
