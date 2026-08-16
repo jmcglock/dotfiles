@@ -71,9 +71,3 @@ eval "$(starship init zsh)"
 
 # Created by `pipx` on 2026-05-09 17:12:36
 export PATH="$PATH:/Users/jmcglock/.local/bin"
-
-# >>> grok installer >>>
-export PATH="$HOME/.grok/bin:$PATH"
-fpath=(~/.grok/completions/zsh $fpath)
-autoload -Uz compinit && compinit -C
-# <<< grok installer <<<
