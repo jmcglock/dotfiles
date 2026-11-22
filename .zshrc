@@ -72,8 +72,8 @@ eval "$(starship init zsh)"
 # Created by `pipx` on 2026-05-09 17:12:36
 export PATH="$PATH:/Users/jmcglock/.local/bin"
 
-# Central OpenCode server on elliot (LAN / Tailscale). Password in Keychain.
+# Central OpenCode server on elliot via Traefik (LAN / Tailscale). Password in Keychain.
 oc() {
   OPENCODE_PASSWORD="$(security find-generic-password -s opencode-elliot -w)" \
-    command opencode --server http://10.0.0.231:4096 "$@"
+    command opencode --server https://opencode.local.jmcglock.com "$@"
 }
