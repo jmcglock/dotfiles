@@ -86,3 +86,12 @@ opencode() {
     oc "$@"
   fi
 }
+# One-time (5 min) pairing link + QR for phone/browser to elliot's OpenCode server.
+oc-pair() {
+  local code url
+  code="$(curl -fsS -u "opencode:$(security find-generic-password -s opencode-elliot -w)" \
+    -X POST https://opencode.local.jmcglock.com/api/pair | jq -r .code)" || return 1
+  url="https://opencode.local.jmcglock.com/auth/connect/$code"
+  echo "$url"
+  command -v qrencode >/dev/null && qrencode -t ansiutf8 "$url"
+}
