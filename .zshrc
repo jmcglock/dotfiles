@@ -77,3 +77,12 @@ oc() {
   OPENCODE_PASSWORD="$(security find-generic-password -s opencode-elliot -w)" \
     command opencode --server https://opencode.local.jmcglock.com "$@"
 }
+# `opencode` defaults to elliot; `opencode --local ...` uses the Mac's own server.
+opencode() {
+  if [[ "$1" == "--local" ]]; then
+    shift
+    command opencode "$@"
+  else
+    oc "$@"
+  fi
+}
